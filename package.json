@@ -1,0 +1,70 @@
+{
+  "name": "aviasales",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.html",
+  "default": "dist/index.html",
+  "targets": {
+    "default": {
+      "publicUrl": "./"
+    }
+  },
+  "homepage": "http://khromove.github.io/aviasales",
+  "scripts": {
+    "start": "parcel serve src/index.html",
+    "build": "parcel build src/index.html --public-url ./",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "rimraf dist && npm run build",
+    "deploy": "gh-pages -d dist",
+    "lint": "eslint src/ --ext .ts .tsx"
+  },
+  "author": "Egor Khromov",
+  "license": "ISC",
+  "dependencies": {
+    "effector": "^20.14.0",
+    "effector-react": "^20.6.3",
+    "parcel": "^1.12.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hot-loader": "^4.12.20",
+    "styled-components": "^5.1.0",
+    "styled-normalize": "^8.0.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/preset-react": "^7.9.4",
+    "@hot-loader/react-dom": "^16.13.0",
+    "@svgr/parcel-plugin-svgr": "^5.3.0",
+    "@types/history": "^4.7.5",
+    "@types/node": "^13.9.5",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.5",
+    "@types/styled-components": "^5.0.1",
+    "@typescript-eslint/eslint-plugin": "^2.31.0",
+    "@typescript-eslint/parser": "^2.25.0",
+    "babel-plugin-styled-components": "^1.10.7",
+    "core-js": "^3.6.4",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-import-resolver-parcel": "^1.10.4",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.6.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "gh-pages": "^2.2.0",
+    "parcel-plugin-bundle-visualiser": "^1.2.0",
+    "prettier": "^2.0.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.8.3"
+  },
+  "alias": {
+    "react-dom": "@hot-loader/react-dom"
+  },
+  "browserslist": [
+    "last 1 Chrome versions"
+  ]
+}
