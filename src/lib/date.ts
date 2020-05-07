@@ -5,11 +5,17 @@ export type Time = {
 
 type MinutesConverter = (minutes: number) => Time
 
-export const minutesConvert: MinutesConverter = (minutes) => {
+export const convertMinutes: MinutesConverter = (minutes) => {
   const remainingMinutes = minutes % 60
   const hours = (minutes - remainingMinutes) / 60
 
   return { hours, minutes: remainingMinutes }
 }
 
-// export const dateFromString
+export const extractTime = (date: Date): string =>
+  date.toLocaleTimeString().replace(/(.*)\D\d+/, '$1')
+
+export const addMinutes = (date: Date, minutes: number): Date =>
+  new Date(date.getTime() + minutes * 60000)
+
+// export const

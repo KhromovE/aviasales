@@ -4,7 +4,7 @@ import { Checkbox } from '../../../ui/molecules'
 
 export const Filters: React.FC = () => (
   <Brick>
-    <Checkbox checked onChnage={() => {}}>
+    <Checkbox checked onChange={() => {}}>
       Все
     </Checkbox>
   </Brick>

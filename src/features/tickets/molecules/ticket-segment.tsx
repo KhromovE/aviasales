@@ -31,7 +31,7 @@ export const TicketSegment: React.FC<Props> = ({ segment }) => (
   <>
     <Wrapper>
       <Title>{segment.jorney}</Title>
-      <Value>2</Value>
+      <Value>{segment.date}</Value>
     </Wrapper>
     <Wrapper>
       <Title>в пути</Title>
