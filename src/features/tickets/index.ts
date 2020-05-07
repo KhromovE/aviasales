@@ -1,5 +1,6 @@
 export { Filters, TicketList } from './organisms'
 export { Sorting } from './molecules'
-export { $searchId, $tickets } from './models'
+export { switchSorting, $searchId, $ticketsModel, $filteredTickets, $sorting } from './models'
 export { TicketListTemplate } from './templates'
-export { SegmentEntity, Segment, Ticket, SegmentEntities, Segments } from './types'
+export { SegmentEntity, Segment, Ticket, SegmentEntities, Segments, SortingIds } from './types'
+export { transformTicket } from './lib/transformer'

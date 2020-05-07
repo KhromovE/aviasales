@@ -1,8 +1,8 @@
 import { nanoid } from 'nanoid'
 
-import { SegmentEntities, TicketEntity, Segments, Ticket } from '../types'
+import { SegmentEntities, TicketEntity, Segments, Ticket, TicketModel } from '../types'
 
-import { numberToCurrency } from '../../../lib/number'
+import { transformToCurrency } from '../../../lib/number'
 import { extractTime, convertMinutes, addMinutes } from '../../../lib/date'
 import { createNumTransformer } from '../../../lib/string'
 
@@ -43,11 +43,19 @@ const prepareSegments = (segments: SegmentEntities): Segments =>
     }
   }) as Segments
 
-export const transformTicket = (tickets: TicketEntity[]): Ticket[] =>
-  tickets.map((ticket) => ({
+export const transformTicketEntity = (ticket: TicketEntity): TicketModel => {
+  const duration = ticket.segments.reduce((acc, nextSegment) => acc + nextSegment.duration, 0)
+  return {
+    ...ticket,
+    duration,
     id: nanoid(),
-    carrier: ticket.carrier,
-    price: numberToCurrency(ticket.price),
-    logo: generateLogoLink(ticket.carrier),
-    segments: prepareSegments(ticket.segments),
-  }))
+  }
+}
+
+export const transformTicket = (ticket: TicketModel): Ticket => ({
+  id: ticket.id,
+  carrier: ticket.carrier,
+  price: transformToCurrency(ticket.price),
+  logo: generateLogoLink(ticket.carrier),
+  segments: prepareSegments(ticket.segments),
+})

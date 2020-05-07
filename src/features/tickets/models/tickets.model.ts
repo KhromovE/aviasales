@@ -1,13 +1,31 @@
-import { createStore } from 'effector'
+import { createStore, sample, merge, combine } from 'effector'
 
-import { Ticket } from '../types'
+import { TicketModel } from '../types'
 import { updateTickets } from './tickets.events'
-import { transformTicket } from '../lib/transformer'
+import { $activeSortingId } from './sorting.model'
+import { transformTicketEntity } from '../lib/transformer'
+import { compareNumbers } from '../../../lib/number'
 
-export const $tickets = createStore<Ticket[]>([])
+export const $ticketsModel = createStore<TicketModel[]>([])
 
-$tickets.on(updateTickets, (store, tickets) => {
-  const ticketsWithId = transformTicket(tickets)
+$ticketsModel.on(updateTickets, (store, tickets) => {
+  const newModelTickets = tickets.map(transformTicketEntity)
 
-  return [...store, ...ticketsWithId]
+  return [...store, ...newModelTickets]
 })
+
+export const $filteredTickets = combine($ticketsModel, $activeSortingId, (tickets, sortingId) => {
+  return tickets.concat().sort((curTicket, nextTicket) => {
+    return compareNumbers(curTicket[sortingId], nextTicket[sortingId])
+  })
+})
+
+// sample({
+//   source: combine({ tickets: $ticketsModel, sorting: $sorting }),
+//   clock: merge([$sorting.updates, $ticketsModel.updates]),
+//   fn: ({ tickets, sorting }) =>
+//     tickets.sort((ticket) => {
+//       const activeSort
+//       return ticket
+//     }),
+// })

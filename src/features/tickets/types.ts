@@ -22,6 +22,7 @@ export type TicketEntity = {
 
 export type TicketModel = TicketEntity & {
   id: string
+  duration: number
 }
 
 export type TicketsResponse = {
@@ -45,4 +46,12 @@ export type Ticket = {
   logo: string
   carrier: string
   segments: Segments
+}
+
+export type SortingIds = 'price' | 'duration'
+
+export type SortingItem = {
+  id: SortingIds
+  active: boolean
+  title: string
 }
