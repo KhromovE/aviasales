@@ -13,10 +13,10 @@
   "scripts": {
     "start": "parcel serve src/index.html",
     "build": "parcel build src/index.html --public-url ./",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watch",
     "predeploy": "rimraf dist && npm run build",
     "deploy": "gh-pages -d dist",
-    "lint": "eslint src/ --ext .ts .tsx"
+    "lint": "eslint \"**/*.{js,ts,tsx}\""
   },
   "author": "Egor Khromov",
   "license": "ISC",
