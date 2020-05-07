@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import CheckIcon from '../../assets/images/check.svg'
 
 type Props = {
   id: string
@@ -29,15 +30,26 @@ const Input = styled.input`
   cursor: pointer;
 
   &:checked {
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8cGF0aCBkPSJNNC4yODU3MSA4TDAgNC4xNjEyM0wxLjIwODU3IDMuMDc4N0w0LjI4NTcxIDUuODI3MjZMMTAuNzkxNCAwTDEyIDEuMDkwMjFMNC4yODU3MSA4WiIgZmlsbD0iIzIxOTZGMyIvPgogICAgPC9zdmc+');
-    background-repeat: no-repeat;
-    background-position: center;
     border: 1px solid var(--primary);
   }
 `
 
+const CheckWrapper = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--spacing-md);
+  height: var(--spacing-md);
+`
+
 export const Checkbox: React.FC<Props> = ({ children, checked, onChange, id }) => (
   <Label htmlFor={id}>
+    {checked && (
+      <CheckWrapper>
+        <CheckIcon />
+      </CheckWrapper>
+    )}
     <Input id={id} type="checkbox" checked={checked} onChange={onChange} />
     {children}
   </Label>
