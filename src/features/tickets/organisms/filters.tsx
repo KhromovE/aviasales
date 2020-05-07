@@ -1,4 +1,11 @@
 import React from 'react'
 import { Brick } from '../../../ui/atoms'
+import { Checkbox } from '../../../ui/molecules'
 
-export const Filters: React.FC = () => <Brick>here</Brick>
+export const Filters: React.FC = () => (
+  <Brick>
+    <Checkbox checked onChnage={() => {}}>
+      Все
+    </Checkbox>
+  </Brick>
+)

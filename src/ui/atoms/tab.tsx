@@ -19,13 +19,13 @@ export const Tab = styled.li<Props>`
   cursor: pointer;
 
   &:first-child {
-    border-top-left-radius: var(--border-radius-sm);
-    border-bottom-left-radius: var(--border-radius-sm);
+    border-top-left-radius: var(--border-radius-md);
+    border-bottom-left-radius: var(--border-radius-md);
   }
 
   &:last-child {
-    border-top-right-radius: var(--border-radius-sm);
-    border-bottom-right-radius: var(--border-radius-sm);
+    border-top-right-radius: var(--border-radius-md);
+    border-bottom-right-radius: var(--border-radius-md);
   }
 
   ${({ active }) =>

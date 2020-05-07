@@ -13,7 +13,8 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 232px 502px;
   grid-template-rows: auto auto auto;
-  gap: var(--gap) var(--gap);
+  gap: var(--spacing-md) var(--spacing-md);
+  margin-bottom: 120px;
 `
 
 const HeaderWrapper = styled.div`
@@ -28,16 +29,15 @@ const SortingWrapper = styled.div`
   grid-area: 2 / 2;
 `
 
-const ContentWrapper = styled.div`
+const ContentWrapper = styled.main`
   grid-area: 3 / 2;
 `
 
-export const MainTemplate: React.FC<Props> = ({ header, filters, sorting }) => (
+export const MainTemplate: React.FC<Props> = ({ header, filters, sorting, children }) => (
   <Container>
     <HeaderWrapper>{header}</HeaderWrapper>
     <FiltersWrapper>{filters}</FiltersWrapper>
     <SortingWrapper>{sorting}</SortingWrapper>
-    <ContentWrapper>{filters}</ContentWrapper>
-    <main />
+    <ContentWrapper>{children}</ContentWrapper>
   </Container>
 )

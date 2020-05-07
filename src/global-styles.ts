@@ -20,9 +20,11 @@ export const GlobalStyles = createGlobalStyle`
 
   :root {
     --page-width: 755px;
-    --gap: 20px;
-    --border-radius-xs: 5px;
-    --border-radius-sm: 6px;
+    --spacing-sm: 10px;
+    --spacing-md: calc(var(--spacing-sm) * 2);
+    --border-radius-xs: 2px;
+    --border-radius-sm: 5px;
+    --border-radius-md: 6px;
 
     --blue-light: #F1FCFF;
     --blue: #2196F3;
