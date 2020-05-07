@@ -1,6 +1,8 @@
 import { createEvent, createStore, combine, forward, sample } from 'effector'
+import { createGate } from 'effector-react'
 
 import {
+  loadSearchId,
   transformTicket,
   switchSorting,
   switchFilter,
@@ -10,6 +12,8 @@ import {
 } from '../../features/tickets'
 
 export { $sorting, $filters } from '../../features/tickets'
+
+export const MainGate = createGate()
 
 export const sortingClicked = createEvent<SortingIds>()
 export const filterCliced = createEvent<string>()
@@ -35,6 +39,11 @@ sample({
       return cache[ticket.id] ? cache[ticket.id] : transformTicket(ticket)
     }),
   target: $visableTickets,
+})
+
+forward({
+  from: MainGate.open,
+  to: loadSearchId,
 })
 
 forward({

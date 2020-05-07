@@ -3,6 +3,7 @@ import { createEffect, merge, sample, restore, forward } from 'effector'
 import { getSearchId, getTickets } from '../api'
 import { updateTickets } from './tickets.events'
 import { updateFilters } from './filters.events'
+import { loadSearchId } from './fetching.events'
 
 const fxLoadSearchId = createEffect({
   handler: getSearchId,
@@ -40,8 +41,11 @@ sample({
 })
 
 forward({
+  from: loadSearchId,
+  to: fxLoadSearchId,
+})
+
+forward({
   from: updateTickets,
   to: updateFilters,
 })
-
-fxLoadSearchId()
