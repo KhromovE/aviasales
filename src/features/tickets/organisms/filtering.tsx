@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, memo } from 'react'
 
 import { FilteringLable } from '../atoms'
 import { FilteringTemplate } from '../templates'
@@ -10,7 +10,7 @@ type Props = {
   onClick: (id: string) => void
 }
 
-export const Filtering: React.FC<Props> = ({ items, onClick }) => {
+export const Filtering: React.FC<Props> = memo(({ items, onClick }) => {
   const handleClick = useCallback((e) => {
     onClick(e.target.id)
   }, [])
@@ -25,4 +25,4 @@ export const Filtering: React.FC<Props> = ({ items, onClick }) => {
       ))}
     </FilteringTemplate>
   )
-}
+})

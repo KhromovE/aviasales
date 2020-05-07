@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, memo } from 'react'
 
 import { Tab, Tabs } from '../../../ui/atoms'
 import { SortingItem, SortingIds } from '../types'
@@ -8,7 +8,7 @@ type Props = {
   onClick: (id: SortingIds) => void
 }
 
-export const Sorting: React.FC<Props> = ({ items, onClick }) => {
+export const Sorting: React.FC<Props> = memo(({ items, onClick }) => {
   const handleClick = useCallback((e) => onClick(e.target.id), [])
 
   return (
@@ -20,4 +20,4 @@ export const Sorting: React.FC<Props> = ({ items, onClick }) => {
       ))}
     </Tabs>
   )
-}
+})

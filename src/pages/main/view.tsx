@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { useStore } from 'effector-react'
 
 import { MainTemplate } from '../../ui/templates'
@@ -7,7 +7,7 @@ import { Filtering, Sorting, TicketList, $filters } from '../../features/tickets
 import Logo from '../../assets/images/logo.svg'
 import { sortingClicked, filterCliced, $visableTickets, $sorting } from './model'
 
-export const Main: React.FC = () => {
+export const Main: React.FC = memo(() => {
   const tickets = useStore($visableTickets)
   const sorting = useStore($sorting)
   const filters = useStore($filters)
@@ -25,4 +25,4 @@ export const Main: React.FC = () => {
       <TicketList tickets={tickets} />
     </MainTemplate>
   )
-}
+})
