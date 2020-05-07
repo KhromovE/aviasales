@@ -58,6 +58,14 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: var(--font-weight-normal);
     color: var(--gray-dark);
     background-color: var(--gray-lighen);
+
+    /* https://stackoverflow.com/a/17715571 */
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
   }
 
   * {
