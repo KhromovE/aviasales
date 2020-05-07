@@ -23,6 +23,7 @@ export type TicketEntity = {
 export type TicketModel = TicketEntity & {
   id: string
   duration: number
+  stopsCount: number
 }
 
 export type TicketsResponse = {
@@ -52,6 +53,12 @@ export type SortingIds = 'price' | 'duration'
 
 export type SortingItem = {
   id: SortingIds
+  active: boolean
+  title: string
+}
+
+export type FilteringItem = {
+  id: string
   active: boolean
   title: string
 }

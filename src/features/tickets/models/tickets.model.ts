@@ -1,8 +1,9 @@
-import { createStore, sample, merge, combine } from 'effector'
+import { createStore, combine } from 'effector'
 
 import { TicketModel } from '../types'
 import { updateTickets } from './tickets.events'
 import { $activeSortingId } from './sorting.model'
+import { $activatedStops } from './filtering.models'
 import { transformTicketEntity } from '../lib/transformer'
 import { compareNumbers } from '../../../lib/number'
 
@@ -14,18 +15,14 @@ $ticketsModel.on(updateTickets, (store, tickets) => {
   return [...store, ...newModelTickets]
 })
 
-export const $filteredTickets = combine($ticketsModel, $activeSortingId, (tickets, sortingId) => {
-  return tickets.concat().sort((curTicket, nextTicket) => {
-    return compareNumbers(curTicket[sortingId], nextTicket[sortingId])
-  })
-})
-
-// sample({
-//   source: combine({ tickets: $ticketsModel, sorting: $sorting }),
-//   clock: merge([$sorting.updates, $ticketsModel.updates]),
-//   fn: ({ tickets, sorting }) =>
-//     tickets.sort((ticket) => {
-//       const activeSort
-//       return ticket
-//     }),
-// })
+export const $filteredTickets = combine(
+  $ticketsModel,
+  $activatedStops,
+  $activeSortingId,
+  (tickets, activatedStops, sortingId) => {
+    return tickets
+      .concat()
+      .filter((ticket) => activatedStops.includes(ticket.stopsCount))
+      .sort((curTicket, nextTicket) => compareNumbers(curTicket[sortingId], nextTicket[sortingId]))
+  },
+)

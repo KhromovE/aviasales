@@ -8,9 +8,9 @@ import { createNumTransformer } from '../../../lib/string'
 
 import { STOP_TITLES, WIHTOUT_STOPS } from '../constants/stops'
 
-export const generateStopTitle = createNumTransformer(STOP_TITLES)
+const generateStopTitle = createNumTransformer(STOP_TITLES)
 
-const generateStopTitles = (stops: number): string => {
+export const createStopTitle = (stops: number): string => {
   if (stops === 0) {
     return WIHTOUT_STOPS
   }
@@ -23,11 +23,13 @@ const generateStopValue = (stops: string[]): string =>
 
     return `${value}, ${nextStop}`
   }, '')
+
 const generateLogoLink = (carrier: string): string => `${process.env.CDN_URL}/${carrier}.png`
-const prepareSegments = (segments: SegmentEntities): Segments =>
+
+const transformSegments = (segments: SegmentEntities): Segments =>
   segments.map((segment) => {
     const duration = convertMinutes(segment.duration)
-    const stopsTitle = generateStopTitles(segment.stops.length)
+    const stopsTitle = createStopTitle(segment.stops.length)
     const stopsValue = generateStopValue(segment.stops)
     const date = new Date(segment.date)
     const departureTime = extractTime(date)
@@ -43,11 +45,23 @@ const prepareSegments = (segments: SegmentEntities): Segments =>
     }
   }) as Segments
 
+export const findLargestStops = (segments: SegmentEntities): number =>
+  segments.reduce((count, nextSegment) => {
+    const stops = nextSegment.stops.length
+
+    if (count < stops) return stops
+
+    return count
+  }, 0)
+
 export const transformTicketEntity = (ticket: TicketEntity): TicketModel => {
-  const duration = ticket.segments.reduce((acc, nextSegment) => acc + nextSegment.duration, 0)
+  const duration = ticket.segments.reduce((sum, nextSegment) => sum + nextSegment.duration, 0)
+  const stopsCount = findLargestStops(ticket.segments)
+
   return {
     ...ticket,
     duration,
+    stopsCount,
     id: nanoid(),
   }
 }
@@ -57,5 +71,5 @@ export const transformTicket = (ticket: TicketModel): Ticket => ({
   carrier: ticket.carrier,
   price: transformToCurrency(ticket.price),
   logo: generateLogoLink(ticket.carrier),
-  segments: prepareSegments(ticket.segments),
+  segments: transformSegments(ticket.segments),
 })
