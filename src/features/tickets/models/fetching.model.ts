@@ -18,22 +18,26 @@ export const $searchId = restore(
   '',
 )
 
+// if the response does't have the stop flag enabled then we will load the next chunk
 const loadMore = fxLoadTickets.done.filter({
   fn: ({ result: { stop } }) => stop !== true,
 })
 
+// load the first tickets chunk when the search id is received
 sample({
   source: $searchId,
   clock: $searchId.updates,
   target: fxLoadTickets,
 })
 
+// if the response does't have the stop flag enabled then we will load the next chunk
 sample({
   source: fxLoadTickets,
   clock: merge([fxLoadTickets.fail, loadMore]),
   target: fxLoadTickets,
 })
 
+// update the tickets store when tickets chunk is reciced
 sample({
   source: fxLoadTickets.done,
   fn: ({ result }) => result.tickets,

@@ -4,8 +4,6 @@ export {
   loadSearchId,
   switchSorting,
   switchFilter,
-  $searchId,
-  $ticketsModel,
   $filteredTickets,
   $sorting,
   $filters,

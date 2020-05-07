@@ -24,6 +24,7 @@ export const $visableTickets = createStore<Ticket[]>([])
 
 $cachedTickets.on(updateCache, (state, tickets) => ({ ...tickets, ...state }))
 
+// update cache with new tickets
 sample({
   source: $visableTickets,
   clock: $visableTickets.updates,
@@ -31,13 +32,14 @@ sample({
   target: updateCache,
 })
 
+// transform tickets for view and if we already cache one of the ticket take it from the cache
 sample({
   source: combine({ tickets: $filteredTickets, cache: $cachedTickets }),
   clock: $filteredTickets.updates,
   fn: ({ tickets, cache }) =>
-    tickets.slice(0, 5).map((ticket) => {
-      return cache[ticket.id] ? cache[ticket.id] : transformTicket(ticket)
-    }),
+    tickets
+      .slice(0, 5)
+      .map((ticket) => (cache[ticket.id] ? cache[ticket.id] : transformTicket(ticket))),
   target: $visableTickets,
 })
 

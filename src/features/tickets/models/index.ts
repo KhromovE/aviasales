@@ -1,6 +1,7 @@
+import './fetching.model'
+
 export { switchSorting } from './sorting.events'
-export { $searchId } from './fetching.model'
-export { $ticketsModel, $filteredTickets } from './tickets.model'
+export { $filteredTickets } from './tickets.model'
 export { $sorting } from './sorting.model'
 export { $filters } from './filters.models'
 export { switchFilter } from './filters.events'
