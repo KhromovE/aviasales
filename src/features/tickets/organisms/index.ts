@@ -1,2 +1,2 @@
-export { Filters } from './filters'
+export { Filtering } from './filtering'
 export { TicketList } from './ticket-list'

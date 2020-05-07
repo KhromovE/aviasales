@@ -38,10 +38,10 @@ const transformSegments = (segments: SegmentEntities): Segments =>
 
     return {
       duration: `${duration.hours}ч ${duration.minutes}м`,
-      jorney: `${segment.origin} - ${segment.destination}`,
+      jorney: `${segment.origin} – ${segment.destination}`,
       stopsTitle,
       stopsValue,
-      date: `${departureTime} - ${arrivalTime}`,
+      date: `${departureTime} – ${arrivalTime}`,
     }
   }) as Segments
 

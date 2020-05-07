@@ -3,7 +3,7 @@ import { createStore, combine } from 'effector'
 import { TicketModel } from '../types'
 import { updateTickets } from './tickets.events'
 import { $activeSortingId } from './sorting.model'
-import { $activatedStops } from './filtering.models'
+import { $activatedStops } from './filters.models'
 import { transformTicketEntity } from '../lib/transformer'
 import { compareNumbers } from '../../../lib/number'
 

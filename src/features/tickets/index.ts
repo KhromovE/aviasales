@@ -1,4 +1,4 @@
-export { Filters, TicketList } from './organisms'
+export { Filtering, TicketList } from './organisms'
 export { Sorting } from './molecules'
 export {
   switchSorting,
@@ -7,7 +7,7 @@ export {
   $ticketsModel,
   $filteredTickets,
   $sorting,
-  $filtering,
+  $filters,
 } from './models'
 export { TicketListTemplate } from './templates'
 export { SegmentEntity, Segment, Ticket, SegmentEntities, Segments, SortingIds } from './types'

@@ -1,12 +1,12 @@
 import { createStore } from 'effector'
 
-import { FilteringItem } from '../types'
-import { updateFiltering, switchFilter } from './filtering.events'
+import { Filters } from '../types'
+import { updateFilters, switchFilter } from './filters.events'
 import { findLargestStops, createStopTitle } from '../lib/transformer'
 
 const ALL_STOPS_ID = '-1'
 
-export const $filtering = createStore<FilteringItem[]>([
+export const $filters = createStore<Filters[]>([
   {
     id: ALL_STOPS_ID,
     title: 'Все',
@@ -14,8 +14,8 @@ export const $filtering = createStore<FilteringItem[]>([
   },
 ])
 
-$filtering
-  .on(updateFiltering, (state, tickets) =>
+$filters
+  .on(updateFilters, (state, tickets) =>
     tickets.reduce((acc, ticket) => {
       const stopsCount = findLargestStops(ticket.segments)
       const stopsCountString = stopsCount.toString()
@@ -50,7 +50,7 @@ $filtering
     return newState
   })
 
-export const $activatedStops = $filtering.map((filters) =>
+export const $activatedStops = $filters.map((filters) =>
   filters.slice(1).reduce((stops: number[], filter) => {
     const id = Number(filter.id)
 

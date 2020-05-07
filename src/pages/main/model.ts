@@ -8,7 +8,7 @@ import {
   SortingIds,
 } from '../../features/tickets'
 
-export { $sorting, $filtering } from '../../features/tickets'
+export { $sorting, $filters } from '../../features/tickets'
 
 export const sortingClicked = createEvent<SortingIds>()
 export const filterCliced = createEvent<string>()

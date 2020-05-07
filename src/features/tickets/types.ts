@@ -57,7 +57,7 @@ export type SortingItem = {
   title: string
 }
 
-export type FilteringItem = {
+export type Filters = {
   id: string
   active: boolean
   title: string

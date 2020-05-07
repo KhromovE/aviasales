@@ -25,6 +25,7 @@ const Input = styled.input`
   border: 1px solid var(--blue);
   border-radius: var(--border-radius-xs);
   appearance: none;
+  outline: none;
   cursor: pointer;
 
   &:checked {

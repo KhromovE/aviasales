@@ -7,7 +7,7 @@ type Props = {
 export const Tab = styled.li<Props>`
   flex: 1;
   list-style-type: none;
-  padding: 15px 0;
+  padding: 14px 0;
   border: 1px solid var(--gray-light);
   font-size: var(--font-size-xs);
   line-height: 20px;
@@ -33,6 +33,6 @@ export const Tab = styled.li<Props>`
     css`
       color: var(--white);
       background-color: var(--primary);
-      border: none;
+      border-color: var(--primary);
     `}
 `
