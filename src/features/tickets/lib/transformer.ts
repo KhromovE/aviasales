@@ -67,7 +67,7 @@ const transformSegments = (segments: SegmentEntities): Segments =>
       stopsValue,
       date: `${departureTime} – ${arrivalTime}`,
     }
-  }) as Segments
+  })
 
 /**
  * find the largest number of stops

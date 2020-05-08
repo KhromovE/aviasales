@@ -12,7 +12,7 @@ export type SegmentEntity = {
   duration: number
 }
 
-export type SegmentEntities = [SegmentEntity, SegmentEntity]
+export type SegmentEntities = SegmentEntity[]
 
 export type TicketEntity = {
   price: number
@@ -39,7 +39,7 @@ export type Segment = {
   stopsValue: string
 }
 
-export type Segments = [Segment, Segment]
+export type Segments = Segment[]
 
 export type Ticket = {
   id: string
