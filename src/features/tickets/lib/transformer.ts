@@ -70,7 +70,7 @@ const transformSegments = (segments: SegmentEntities): Segments =>
   })
 
 /**
- * find the largest number of stops
+ * generate the list of stops length
  * @param  {SegmentEntities} segments tuple of the segment
  * @returns {number} count of the stops
  */
@@ -97,6 +97,7 @@ export const transformTicketEntity = (ticket: TicketEntity): TicketModel => {
     id: nanoid(),
   }
 }
+
 /**
  * prepare ticket for the view
  * @param  {TicketModel} ticket from the backend
