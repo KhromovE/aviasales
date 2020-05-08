@@ -28,6 +28,8 @@ $filters
 
         // otherwise add a new filter
         stopCounts.forEach((stop) => {
+          if (acc[stop + 1]) return
+
           acc[stop + 1] = {
             id: stop.toString(),
             title: createStopTitle(stop),
