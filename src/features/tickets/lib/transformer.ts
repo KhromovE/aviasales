@@ -88,12 +88,12 @@ export const findStopCounts = (segments: SegmentEntities): number[] =>
  */
 export const transformTicketEntity = (ticket: TicketEntity): TicketModel => {
   const duration = ticket.segments.reduce((sum, nextSegment) => sum + nextSegment.duration, 0)
-  const stopsCount = findStopCounts(ticket.segments)
+  const stopCounts = findStopCounts(ticket.segments)
 
   return {
     ...ticket,
     duration,
-    stopsCount,
+    stopCounts,
     id: nanoid(),
   }
 }

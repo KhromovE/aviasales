@@ -18,8 +18,8 @@ $filters
   .on(updateFilters, (state, tickets) =>
     tickets.reduce(
       (acc, ticket) => {
-        const stopsCount = findStopCounts(ticket.segments)
-        const filterExists = stopsCount.every((stops) =>
+        const stopCounts = findStopCounts(ticket.segments)
+        const filterExists = stopCounts.every((stops) =>
           acc.find((filter) => filter?.id === stops.toString()),
         )
 
@@ -27,7 +27,7 @@ $filters
         if (filterExists) return acc
 
         // otherwise add a new filter
-        stopsCount.forEach((stop) => {
+        stopCounts.forEach((stop) => {
           acc[stop + 1] = {
             id: stop.toString(),
             title: createStopTitle(stop),
