@@ -2,7 +2,7 @@ export { Filtering, TicketList } from './organisms'
 export { Sorting } from './molecules'
 export {
   loadSearchId,
-  switchSorting,
+  toggleSorting,
   switchFilter,
   $filteredTickets,
   $sorting,

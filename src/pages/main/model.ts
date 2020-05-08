@@ -4,7 +4,7 @@ import { createGate } from 'effector-react'
 import {
   loadSearchId,
   transformTicket,
-  switchSorting,
+  toggleSorting,
   switchFilter,
   $filteredTickets,
   SortingIds,
@@ -19,7 +19,7 @@ export const sortingClicked = createEvent<SortingIds>()
 export const filterCliced = createEvent<string>()
 const updateCache = createEvent<Record<string, Ticket>>()
 
-export const $cachedTickets = createStore<Record<string, Ticket>>({})
+const $cachedTickets = createStore<Record<string, Ticket>>({})
 export const $visableTickets = createStore<Ticket[]>([])
 
 $cachedTickets.on(updateCache, (state, tickets) => ({ ...tickets, ...state }))
@@ -50,7 +50,7 @@ forward({
 
 forward({
   from: sortingClicked,
-  to: switchSorting,
+  to: toggleSorting,
 })
 
 forward({

@@ -1,7 +1,7 @@
 import { createStore } from 'effector'
 
 import { SortingItem, SortingIds } from '../types'
-import { switchSorting } from './sorting.events'
+import { toggleSorting } from './sorting.events'
 import { PRICE_TITLE, DURATION_TITLE } from '../constants/sorting'
 
 export const $sorting = createStore<SortingItem[]>([
@@ -17,7 +17,7 @@ export const $sorting = createStore<SortingItem[]>([
   },
 ])
 
-$sorting.on(switchSorting, (store, id) =>
+$sorting.on(toggleSorting, (store, id) =>
   store.map((item) => ({
     ...item,
     active: item.id === id,

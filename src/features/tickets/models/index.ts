@@ -1,6 +1,6 @@
 import './fetching.model'
 
-export { switchSorting } from './sorting.events'
+export { toggleSorting } from './sorting.events'
 export { $filteredTickets } from './tickets.model'
 export { $sorting } from './sorting.model'
 export { $filters } from './filters.models'

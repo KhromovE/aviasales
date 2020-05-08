@@ -13,7 +13,7 @@ const fxLoadTickets = createEffect({
   handler: getTickets,
 })
 
-export const $searchId = restore(
+const $searchId = restore(
   fxLoadSearchId.done.map(({ result }) => result.searchId),
   '',
 )

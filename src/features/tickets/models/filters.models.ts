@@ -16,27 +16,30 @@ export const $filters = createStore<Filters[]>([
 $filters
   // update filters with new a tickets chunks
   .on(updateFilters, (state, tickets) =>
-    tickets.reduce((acc, ticket) => {
-      const stopsCount = findLargestStops(ticket.segments)
-      const stopsCountString = stopsCount.toString()
-      const filterExists = acc.find((filter) => filter?.id === stopsCountString)
+    tickets.reduce(
+      (acc, ticket) => {
+        const stopsCount = findLargestStops(ticket.segments)
+        const stopsCountString = stopsCount.toString()
+        const filterExists = acc.find((filter) => filter?.id === stopsCountString)
 
-      // if filter is already exists don't do anything
-      if (filterExists) return acc
+        // if filter is already exists don't do anything
+        if (filterExists) return acc
 
-      // otherwise add a new filter
-      acc[stopsCount + 1] = {
-        id: stopsCountString,
-        title: createStopTitle(stopsCount),
-        active: true,
-      }
+        // otherwise add a new filter
+        acc[stopsCount + 1] = {
+          id: stopsCountString,
+          title: createStopTitle(stopsCount),
+          active: true,
+        }
 
-      return acc.concat()
-    }, state),
+        return acc
+      },
+      [...state],
+    ),
   )
   .on(switchFilter, (state, id) => {
     const index = Number(id) + 1
-    let newState = state.concat()
+    let newState = [...state]
     const isActive = newState[index].active
 
     // if the allStops filter was switched then change all switch filters
@@ -57,6 +60,8 @@ $filters
 // generate the array for convenient filtration of the tickets list
 export const $activatedStops = $filters.map((filters) =>
   filters.slice(1).reduce((stops: number[], filter) => {
+    if (filter === undefined) return stops
+
     const id = Number(filter.id)
 
     if (!filter.active) return stops

@@ -7,7 +7,7 @@ import { $activatedStops } from './filters.models'
 import { transformTicketEntity } from '../lib/transformer'
 import { compareNumbers } from '../../../lib/number'
 
-const $ticketsModel = createStore<TicketModel[]>([])
+export const $ticketsModel = createStore<TicketModel[]>([])
 
 // added new tickets to the tickets store
 $ticketsModel.on(updateTickets, (store, tickets) => {
