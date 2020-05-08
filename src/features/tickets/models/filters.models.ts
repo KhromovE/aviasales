@@ -44,8 +44,10 @@ $filters
 
     // if the allStops filter was switched then change all switch filters
     if (index !== 0) {
-      newState[0].active = false
       newState[index].active = !isActive
+
+      const isAllFiltersChecked = newState.slice(1).every((filter) => filter?.active)
+      newState[0].active = isAllFiltersChecked
     } else {
       // otherwise change only one filter
       newState = newState.map((item) => ({
@@ -53,6 +55,8 @@ $filters
         active: !isActive,
       }))
     }
+
+    // if (isAllFiltersChecked) newState[0].active = true
 
     return newState
   })
