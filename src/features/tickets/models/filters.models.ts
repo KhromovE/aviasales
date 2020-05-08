@@ -2,7 +2,7 @@ import { createStore } from 'effector'
 
 import { Filters } from '../types'
 import { updateFilters, switchFilter } from './filters.events'
-import { findLargestStops, createStopTitle } from '../lib/transformer'
+import { findStopCounts, createStopTitle } from '../lib/transformer'
 import { ALL_STOPS_ID, ALL_STOPS_TITLE } from '../constants/stops'
 
 export const $filters = createStore<Filters[]>([
@@ -18,19 +18,22 @@ $filters
   .on(updateFilters, (state, tickets) =>
     tickets.reduce(
       (acc, ticket) => {
-        const stopsCount = findLargestStops(ticket.segments)
-        const stopsCountString = stopsCount.toString()
-        const filterExists = acc.find((filter) => filter?.id === stopsCountString)
+        const stopsCount = findStopCounts(ticket.segments)
+        const filterExists = stopsCount.every((stops) =>
+          acc.find((filter) => filter?.id === stops.toString()),
+        )
 
         // if filter is already exists don't do anything
         if (filterExists) return acc
 
         // otherwise add a new filter
-        acc[stopsCount + 1] = {
-          id: stopsCountString,
-          title: createStopTitle(stopsCount),
-          active: true,
-        }
+        stopsCount.forEach((stop) => {
+          acc[stop + 1] = {
+            id: stop.toString(),
+            title: createStopTitle(stop),
+            active: true,
+          }
+        })
 
         return acc
       },

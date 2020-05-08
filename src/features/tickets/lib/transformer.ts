@@ -74,14 +74,12 @@ const transformSegments = (segments: SegmentEntities): Segments =>
  * @param  {SegmentEntities} segments tuple of the segment
  * @returns {number} count of the stops
  */
-export const findLargestStops = (segments: SegmentEntities): number =>
-  segments.reduce((count, nextSegment) => {
-    const stops = nextSegment.stops.length
-
-    if (count < stops) return stops
+export const findStopCounts = (segments: SegmentEntities): number[] =>
+  segments.reduce<number[]>((count, nextSegment) => {
+    count.push(nextSegment.stops.length)
 
     return count
-  }, 0)
+  }, [])
 
 /**
  * add several fields for convineint
@@ -90,7 +88,7 @@ export const findLargestStops = (segments: SegmentEntities): number =>
  */
 export const transformTicketEntity = (ticket: TicketEntity): TicketModel => {
   const duration = ticket.segments.reduce((sum, nextSegment) => sum + nextSegment.duration, 0)
-  const stopsCount = findLargestStops(ticket.segments)
+  const stopsCount = findStopCounts(ticket.segments)
 
   return {
     ...ticket,

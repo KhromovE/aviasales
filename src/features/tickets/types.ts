@@ -23,7 +23,7 @@ export type TicketEntity = {
 export type TicketModel = TicketEntity & {
   id: string
   duration: number
-  stopsCount: number
+  stopsCount: number[]
 }
 
 export type TicketsResponse = {

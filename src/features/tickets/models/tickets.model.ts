@@ -24,7 +24,7 @@ export const $filteredTickets = combine(
   (tickets, activatedStops, sortingId) => {
     return tickets
       .concat()
-      .filter((ticket) => activatedStops.includes(ticket.stopsCount))
+      .filter((ticket) => ticket.stopsCount.every((stop) => activatedStops.includes(stop)))
       .sort((curTicket, nextTicket) => compareNumbers(curTicket[sortingId], nextTicket[sortingId]))
   },
 )

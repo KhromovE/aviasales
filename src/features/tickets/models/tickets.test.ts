@@ -91,7 +91,7 @@ describe('tickets', () => {
         id,
         price: 12345,
         duration: 12345,
-        stopsCount: 2,
+        stopsCount: [2],
         carrier: 'TT',
         segments: [
           {
@@ -132,7 +132,7 @@ describe('tickets', () => {
         id: nextId,
         price: 10000,
         duration: 20000,
-        stopsCount: 2,
+        stopsCount: [2],
         carrier: 'KK',
         segments: [
           {
@@ -148,7 +148,7 @@ describe('tickets', () => {
         id,
         price: 20000,
         duration: 10000,
-        stopsCount: 2,
+        stopsCount: [2],
         carrier: 'TT',
         segments: [
           {
