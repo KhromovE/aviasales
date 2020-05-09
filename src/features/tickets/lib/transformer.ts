@@ -11,20 +11,14 @@ import { STOP_TITLES, WIHTOUT_STOPS } from '../constants/stops'
 /**
  * cretes a function that will decline "пересадки"
  */
-const stopsDecletion = createNounDeclension(STOP_TITLES)
+const stopsDecletion = createNounDeclension(STOP_TITLES, WIHTOUT_STOPS)
 
 /**
  * create title for the view
  * @param  {number} stops count of the stops
  * @returns string that contains title for the view
  */
-export const createStopTitle = (stops: number): string => {
-  if (stops === 0) {
-    return WIHTOUT_STOPS
-  }
-
-  return `${stops} ${stopsDecletion(stops)}`
-}
+export const createStopTitle = (stops: number): string => stopsDecletion(stops)
 
 /**
  * generate string that contains all stops
