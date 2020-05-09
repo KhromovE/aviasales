@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 type Props = {
   header: React.ReactNode
-  sideMenu: React.ReactNode
+  sidePanel: React.ReactNode
   panel: React.ReactNode
 }
 
@@ -17,19 +17,19 @@ const Container = styled.div`
   justify-content: center;
   margin: 0 var(--spacing-md) var(--bottom-spacing);
   grid-template-columns: var(--menu-size) minmax(auto, var(--content-size));
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto 1fr;
   gap: var(--spacing-md) var(--spacing-md);
   grid-template-areas:
     'header header'
-    'side-menu panel'
-    'side-menu content';
+    'side-panel panel'
+    'side-panel content';
 
   @media (max-width: 700px) {
     grid-template-columns: minmax(auto, var(--mobile-content-size));
     grid-template-rows: max-content max-content auto 1fr;
     grid-template-areas:
       'header'
-      'side-menu'
+      'side-panel'
       'panel'
       'content';
   }
@@ -39,8 +39,8 @@ const HeaderWrapper = styled.div`
   grid-area: header;
 `
 
-const SideMenu = styled.div`
-  grid-area: side-menu;
+const SidePanel = styled.div`
+  grid-area: side-panel;
 `
 
 const Panel = styled.div`
@@ -51,10 +51,10 @@ const ContentWrapper = styled.main`
   grid-area: content;
 `
 
-export const MainTemplate: React.FC<Props> = ({ header, sideMenu, panel, children }) => (
+export const MainTemplate: React.FC<Props> = ({ header, sidePanel, panel, children }) => (
   <Container>
     <HeaderWrapper>{header}</HeaderWrapper>
-    <SideMenu>{sideMenu}</SideMenu>
+    <SidePanel>{sidePanel}</SidePanel>
     <Panel>{panel}</Panel>
     <ContentWrapper>{children}</ContentWrapper>
   </Container>
