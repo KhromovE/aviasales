@@ -24,7 +24,7 @@ $sorting.on(toggleSorting, (store, id) =>
   })),
 )
 
-// generate the array for convenient sorting of the tickets list
+// find active id
 export const $activeSortingId = $sorting.map<SortingIds>((sorting) =>
   sorting.reduce((id, nextItem) => (nextItem.active === true ? nextItem.id : id), sorting[0].id),
 )
