@@ -19,7 +19,6 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   :root {
-    --page-width: 755px;
     --spacing-sm: 10px;
     --spacing-md: calc(var(--spacing-sm) * 2);
     --border-radius-xs: 2px;

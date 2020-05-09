@@ -21,8 +21,8 @@ export const Main: React.FC = memo(() => {
             <Logo />
           </Header>
         }
-        filters={<Filtering items={filters} onClick={filterCliced} />}
-        sorting={<Sorting items={sorting} onClick={sortingClicked} />}
+        sideMenu={<Filtering items={filters} onClick={filterCliced} />}
+        panel={<Sorting items={sorting} onClick={sortingClicked} />}
       >
         <TicketList tickets={tickets} />
       </MainTemplate>

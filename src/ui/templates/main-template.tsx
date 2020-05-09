@@ -3,41 +3,59 @@ import styled from 'styled-components'
 
 type Props = {
   header: React.ReactNode
-  filters: React.ReactNode
-  sorting: React.ReactNode
+  sideMenu: React.ReactNode
+  panel: React.ReactNode
 }
 
 const Container = styled.div`
-  max-width: var(--page-width);
-  margin: auto;
+  --menu-size: 232px;
+  --content-size: 502px;
+  --bottom-spacing: calc(var(--spacing-md) * 6);
+  --mobile-content-size: 660px;
+
   display: grid;
-  grid-template-columns: 232px 502px;
+  justify-content: center;
+  margin: 0 var(--spacing-md) var(--bottom-spacing);
+  grid-template-columns: var(--menu-size) minmax(auto, var(--content-size));
   grid-template-rows: auto auto auto;
   gap: var(--spacing-md) var(--spacing-md);
-  margin-bottom: 120px;
+  grid-template-areas:
+    'header header'
+    'side-menu panel'
+    'side-menu content';
+
+  @media (max-width: 700px) {
+    grid-template-columns: minmax(auto, var(--mobile-content-size));
+    grid-template-rows: max-content max-content auto 1fr;
+    grid-template-areas:
+      'header'
+      'side-menu'
+      'panel'
+      'content';
+  }
 `
 
 const HeaderWrapper = styled.div`
-  grid-area: 1 / 2 span;
+  grid-area: header;
 `
 
-const FiltersWrapper = styled.div`
-  grid-area: 2 span / 1;
+const SideMenu = styled.div`
+  grid-area: side-menu;
 `
 
-const SortingWrapper = styled.div`
-  grid-area: 2 / 2;
+const Panel = styled.div`
+  grid-area: panel;
 `
 
 const ContentWrapper = styled.main`
-  grid-area: 3 / 2;
+  grid-area: content;
 `
 
-export const MainTemplate: React.FC<Props> = ({ header, filters, sorting, children }) => (
+export const MainTemplate: React.FC<Props> = ({ header, sideMenu, panel, children }) => (
   <Container>
     <HeaderWrapper>{header}</HeaderWrapper>
-    <FiltersWrapper>{filters}</FiltersWrapper>
-    <SortingWrapper>{sorting}</SortingWrapper>
+    <SideMenu>{sideMenu}</SideMenu>
+    <Panel>{panel}</Panel>
     <ContentWrapper>{children}</ContentWrapper>
   </Container>
 )
