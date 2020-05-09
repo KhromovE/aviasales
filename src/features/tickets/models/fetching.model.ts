@@ -1,4 +1,4 @@
-import { createEffect, merge, sample, restore, forward } from 'effector'
+import { createEffect, merge, sample, restore, forward, createStore } from 'effector'
 
 import { getSearchId, getTickets } from '../api'
 import { updateTickets } from './tickets.events'
@@ -13,6 +13,8 @@ const fxLoadTickets = createEffect({
   handler: getTickets,
 })
 
+export const $isLoading = createStore(true)
+
 const $searchId = restore(
   fxLoadSearchId.done.map(({ result }) => result.searchId),
   '',
@@ -22,6 +24,13 @@ const $searchId = restore(
 const loadMore = fxLoadTickets.done.filter({
   fn: ({ result: { stop } }) => stop !== true,
 })
+
+// if stop flag is enabled then switch $isLoading to false
+const loadingStopped = fxLoadTickets.done.filter({
+  fn: ({ result: { stop } }) => stop === true,
+})
+
+$isLoading.on(loadingStopped, () => false)
 
 // load the first tickets chunk when the search id is received
 sample({

@@ -11,7 +11,7 @@ import {
   Ticket,
 } from '../../features/tickets'
 
-export { $sorting, $filters } from '../../features/tickets'
+export { $sorting, $filters, $isLoading } from '../../features/tickets'
 
 export const MainGate = createGate()
 

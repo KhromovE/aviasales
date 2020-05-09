@@ -1,5 +1,4 @@
-import './fetching.model'
-
+export { $isLoading } from './fetching.model'
 export { toggleSorting } from './sorting.events'
 export { $filteredTickets } from './tickets.model'
 export { $sorting } from './sorting.model'

@@ -4,6 +4,7 @@ export {
   loadSearchId,
   toggleSorting,
   switchFilter,
+  $isLoading,
   $filteredTickets,
   $sorting,
   $filters,
