@@ -44,37 +44,34 @@ $filters
   )
   .on(switchFilter, (state, id) => {
     const index = Number(id) + 1
-    let newState = [...state]
-    const isActive = newState[index].active
+    const isActive = state[index].active
 
-    // if the allStops filter was switched then change all switch filters
-    if (index !== 0) {
-      newState[index].active = !isActive
-
-      const isAllFiltersChecked = newState.slice(1).every((filter) => filter?.active)
-      newState[0].active = isAllFiltersChecked
-    } else {
-      // otherwise change only one filter
-      newState = newState.map((item) => ({
+    // if "all stops" filter switched then switch every filter
+    if (index === 0) {
+      return state.map((item) => ({
         ...item,
         active: !isActive,
       }))
     }
 
-    // if (isAllFiltersChecked) newState[0].active = true
+    // otherwise switch only one filter
+    const newState = [...state]
+    newState[index].active = !isActive
+
+    // if all filters are checked then switch "all stops" filter
+    const isAllFiltersChecked = newState.slice(1).every((filter) => filter?.active)
+    newState[0].active = isAllFiltersChecked
 
     return newState
   })
 
 // generate the array for convenient filtration of the tickets list
 export const $activatedStops = $filters.map((filters) =>
-  filters.slice(1).reduce((stops: number[], filter) => {
-    if (filter === undefined) return stops
-
-    const id = Number(filter.id)
-
-    if (!filter.active) return stops
-
-    return [...stops, id]
-  }, []),
+  filters
+    .slice(1)
+    .reduce(
+      (stops: number[], filter) =>
+        filter === undefined || !filter.active ? stops : [...stops, Number(filter.id)],
+      [],
+    ),
 )

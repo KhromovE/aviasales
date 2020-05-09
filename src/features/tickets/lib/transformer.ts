@@ -4,14 +4,14 @@ import { SegmentEntities, TicketEntity, Segments, Ticket, TicketModel } from '..
 
 import { transformToCurrency } from '../../../lib/number'
 import { extractTime, convertMinutes, addMinutes } from '../../../lib/date'
-import { nounDeclension } from '../../../lib/string'
+import { createNounDeclension } from '../../../lib/string'
 
 import { STOP_TITLES, WIHTOUT_STOPS } from '../constants/stops'
 
 /**
  * cretes a function that will decline "пересадки"
  */
-const stopsDecletion = nounDeclension(STOP_TITLES)
+const stopsDecletion = createNounDeclension(STOP_TITLES)
 
 /**
  * create title for the view
@@ -32,11 +32,7 @@ export const createStopTitle = (stops: number): string => {
  * @return {string}
  */
 const generateStopValue = (stops: string[]): string =>
-  stops.reduce((value, nextStop) => {
-    if (value.length === 0) return nextStop
-
-    return `${value}, ${nextStop}`
-  }, '')
+  stops.reduce((value, nextStop) => (value.length === 0 ? nextStop : `${value}, ${nextStop}`), '')
 
 /**
  * generate link to the image
