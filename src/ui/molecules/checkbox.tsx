@@ -16,7 +16,7 @@ const Label = styled.label`
   cursor: pointer;
 
   &:hover {
-    background-color: var(--blue-light);
+    background-color: var(--blue-lighest);
   }
 `
 const Input = styled.input`

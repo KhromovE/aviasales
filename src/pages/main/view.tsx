@@ -2,7 +2,8 @@ import React, { memo } from 'react'
 import { useStore } from 'effector-react'
 
 import { MainTemplate } from '../../ui/templates'
-import { Header } from '../../ui/molecules'
+import { Header } from '../../ui/atoms'
+import { Preloader } from '../../ui/molecules'
 import { Filtering, Sorting, TicketList } from '../../features/tickets'
 import Logo from '../../assets/images/logo.svg'
 import {
@@ -25,6 +26,7 @@ export const Main: React.FC = memo(() => {
     <>
       <MainGate />
       <MainTemplate
+        preloader={<Preloader finished={!isLoading} />}
         header={
           <Header>
             <Logo />

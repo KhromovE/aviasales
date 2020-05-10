@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 type Props = {
+  preloader: React.ReactNode
   header: React.ReactNode
   sidePanel: React.ReactNode
   panel: React.ReactNode
@@ -35,6 +36,13 @@ const Container = styled.div`
   }
 `
 
+const PreloaderWrapper = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+`
+
 const HeaderWrapper = styled.div`
   grid-area: header;
 `
@@ -51,8 +59,15 @@ const ContentWrapper = styled.main`
   grid-area: content;
 `
 
-export const MainTemplate: React.FC<Props> = ({ header, sidePanel, panel, children }) => (
+export const MainTemplate: React.FC<Props> = ({
+  preloader,
+  header,
+  sidePanel,
+  panel,
+  children,
+}) => (
   <Container>
+    <PreloaderWrapper>{preloader}</PreloaderWrapper>
     <HeaderWrapper>{header}</HeaderWrapper>
     <SidePanel>{sidePanel}</SidePanel>
     <Panel>{panel}</Panel>

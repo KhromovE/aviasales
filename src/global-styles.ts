@@ -21,13 +21,16 @@ export const GlobalStyles = createGlobalStyle`
   :root {
     --spacing-sm: 10px;
     --spacing-md: calc(var(--spacing-sm) * 2);
+    --spacing-lg: calc(var(--spacing-sm) * 4);
     --border-radius-xs: 2px;
     --border-radius-sm: 5px;
     --border-radius-md: 6px;
 
-    --blue-light: #F1FCFF;
+    --blue-lighest: #f1fcff;
+    --blue-lighter: #90caf9;
+    --blue-light: #90caf9;
     --blue: #2196F3;
-    --gray-lighen: #f3f7fa;
+    --gray-lighest: #f3f7fa;
     --gray-light: #dfe5ec;
     --gray: #a0b0b9;
     --gray-dark: #4a4a4a;
@@ -56,7 +59,7 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Open Sans', sans-serif;
     font-weight: var(--font-weight-normal);
     color: var(--gray-dark);
-    background-color: var(--gray-lighen);
+    background-color: var(--gray-lighest);
 
     /* https://stackoverflow.com/a/17715571 */
     font-style: normal;

@@ -7,7 +7,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   font-weight: var(--font-weight-bold);
-  letter-spacing: var(--letter-spacing);
 `
 
 const Title = styled.span`
@@ -15,6 +14,7 @@ const Title = styled.span`
   color: var(--gray);
   line-height: 18px;
   text-transform: uppercase;
+  letter-spacing: var(--letter-spacing);
 `
 
 const Value = styled.span`
